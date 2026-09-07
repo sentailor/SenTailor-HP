@@ -5,7 +5,7 @@
 - `index.html` … サイト本体（単一ファイル・フレームワークなし）
 - `images/` … 制作例のスクリーンショット（すべて架空のサンプル）
 
-## 公開（GitHub Pages）
+## 公開（GitHub Pages ＋ ムームードメイン）
 1. このフォルダを push
 2. リポジトリ Settings → Pages → Deploy from a branch → `main` / `(root)` → Save
 3. 1〜2分で `https://<ユーザー名>.github.io/<リポジトリ名>/` に公開
