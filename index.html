@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>HP作成×映像編集｜企画からつくる、ホームページと動画</title>
+<meta name="description" content="HP作成×映像編集｜元テレビ番組スタッフ・現法人営業による、小規模店舗向けのホームページ制作と映像・写真の撮影／編集。番組づくりの企画力・構成力とAI活用で、はやく・お手頃に。東京23区＋オンライン全国。期間限定でHP制作費3,000円（税込）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<style>
+  /* ===================================================================
+     ブランドスタイルガイド適用
+     - 白 #FFFFFF（ベース） / 黄 #F5C518（面・アクセント） / 濃紺 #1B1F3B（文字専用）
+     - グレーは細い枠線・区切り線のみ / 明朝・装飾フォントなし・ゴシック体で統一
+     =================================================================== */
+  :root {
+    color-scheme: light;
+    --white: #ffffff;
+    --yellow: #f5c518;
+    --navy: #1b1f3b;
+    --navy-soft: rgba(27, 31, 59, 0.66);
+    --line: rgba(75, 75, 75, 0.22);
+    --shadow: 0 1px 3px rgba(27, 31, 59, 0.06), 0 14px 30px -20px rgba(27, 31, 59, 0.16);
+
+    --sans: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+
+    --wrap: 1060px;
+    --measure: 34em;
+    --pad: clamp(20px, 5vw, 44px);
+    --step: clamp(56px, 10vw, 108px);
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  body {
+    background: var(--white);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.5; letter-spacing: 0.01em; }
+
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--navy); outline-offset: 3px; border-radius: 3px; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 60;
+    background: var(--navy); color: #fff; padding: 0.6rem 1rem; font-weight: 700; border-radius: 8px;
+  }
+  .skip:focus { left: 0.5rem; top: 0.5rem; }
+
+  .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
+
+  /* 黄色マーカー（見出しの面ハイライト） */
+  .hl {
+    background: linear-gradient(transparent 60%, var(--yellow) 60%, var(--yellow) 94%, transparent 94%);
+    padding: 0 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: var(--sans); font-weight: 700; font-size: 0.94rem; line-height: 1;
+    letter-spacing: 0.03em; text-decoration: none; cursor: pointer;
+    border: 0; padding: 1rem 1.7rem; border-radius: 8px;
+    transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn svg { width: 18px; height: 18px; flex: none; }
+  .btn--lg { padding: 1.15rem 2.2rem; font-size: 1rem; }
+
+  /* メインCTA：黄色の背景＋濃紺の文字 */
+  .btn--solid { background: var(--yellow); color: var(--navy); box-shadow: 0 10px 24px -14px rgba(245, 197, 24, 0.9); }
+  .btn--solid:hover { background: #e6b813; }
+
+  /* サブ：白背景＋濃紺の文字＋黄色の下線 */
+  .btn--sub {
+    background: var(--white); color: var(--navy);
+    border: 1px solid var(--line); border-bottom: 3px solid var(--yellow);
+    border-radius: 8px; padding: 0.9rem 1.5rem;
+  }
+  .btn--sub:hover { background: #fffdf3; }
+
+  /* 黄色帯の上に置くボタン：白背景＋濃紺の文字 */
+  .btn--onband { background: var(--white); color: var(--navy); }
+  .btn--onband:hover { background: #f4f4f4; }
+  .btn--onband-line { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+  .btn--onband-line:hover { background: rgba(27, 31, 59, 0.06); }
+
+  /* ---------- Header ---------- */
+  .site-header {
+    position: sticky; top: 0; z-index: 40;
+    background: var(--white); border-bottom: 3px solid var(--yellow);
+    transition: box-shadow 0.25s ease;
+  }
+  .site-header.scrolled { box-shadow: 0 8px 24px -18px rgba(27, 31, 59, 0.4); }
+  .header-in {
+    max-width: var(--wrap); margin-inline: auto; padding: 0.7rem var(--pad);
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    position: relative;
+  }
+  .brand {
+    font-weight: 700; font-size: 1.02rem; letter-spacing: 0.04em;
+    color: var(--navy); text-decoration: none; white-space: nowrap;
+  }
+  .nav { display: flex; align-items: center; gap: clamp(0.55rem, 1.7vw, 1.3rem); }
+  .nav a:not(.btn) {
+    font-weight: 500; font-size: 0.84rem; letter-spacing: 0.02em;
+    color: var(--navy); text-decoration: none;
+    padding: 0.5rem 0; border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+  }
+  .nav a:not(.btn) { opacity: 0.78; }
+  .nav a:not(.btn):hover { opacity: 1; }
+  .nav a.is-active { opacity: 1; border-color: var(--yellow); }
+  .nav .btn--ig { padding: 0.55rem 0.9rem; font-size: 0.8rem; background: var(--white); color: var(--navy); border: 1px solid var(--line); }
+  .nav .btn--ig:hover { border-color: var(--yellow); }
+  .nav .btn--cta { padding: 0.6rem 1.1rem; font-size: 0.8rem; }
+  .menu-btn {
+    display: none; background: var(--white); border: 1px solid var(--line);
+    color: var(--navy); font-weight: 700; font-size: 0.75rem; line-height: 1; letter-spacing: 0.1em;
+    padding: 0.55rem 0.85rem; border-radius: 8px; cursor: pointer;
+  }
+
+  /* ---------- Views (routing) ---------- */
+  .view { display: none; }
+  .view[data-view="home"] { display: block; }
+  body.js-ready .view { display: none; }
+  body.js-ready .view.is-active { display: block; }
+  @media (prefers-reduced-motion: no-preference) {
+    body.js-ready .view.is-active { animation: viewfade 0.3s ease both; }
+  }
+  @keyframes viewfade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* 日本語の改行制御：語のまとまりで折り返す（.nb は途中で改行しない塊） */
+  .nb { display: inline-block; }
+  h1, h2, h3, .hero__lead, .section__lead { line-break: strict; overflow-wrap: anywhere; }
+
+  /* ---------- Section frame ---------- */
+  .section { padding-block: var(--step); }
+  .section__head { position: relative; max-width: var(--measure); margin-bottom: clamp(28px, 5vw, 46px); }
+  .eyebrow {
+    display: inline-block; font-weight: 700; font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy);
+    padding-bottom: 0.35rem; border-bottom: 3px solid var(--yellow); margin-bottom: 1rem;
+  }
+  .section__title {
+    font-size: clamp(1.5rem, 4.4vw, 2.15rem); text-wrap: balance;
+  }
+  .section__lead { margin-top: 1rem; color: var(--navy-soft); font-size: 0.98rem; }
+  .section__lead strong { color: var(--navy); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; padding-block: clamp(56px, 11vw, 112px); }
+  .hero__blob {
+    position: absolute; z-index: 0; border-radius: 50%;
+    width: min(56vw, 440px); aspect-ratio: 1;
+    background: var(--yellow); right: -12%; top: -20%;
+  }
+  .hero > .wrap { position: relative; z-index: 1; }
+  .hero__eyebrow {
+    display: inline-block; font-weight: 700; font-size: 0.74rem; letter-spacing: 0.14em;
+    color: var(--navy); background: var(--yellow);
+    border-radius: 999px; padding: 0.5rem 1.05rem; margin-bottom: 1.5rem;
+  }
+  .hero__title {
+    font-size: clamp(1.5rem, 5.8vw, 3.15rem); line-height: 1.45;
+    letter-spacing: 0.01em; max-width: 15em;
+  }
+  .hero__lead {
+    margin-top: 1.5rem; max-width: 30em; color: var(--navy-soft);
+    font-size: clamp(0.98rem, 2.3vw, 1.05rem); line-height: 2;
+  }
+  .hero__actions { margin-top: 2.1rem; display: flex; flex-wrap: wrap; gap: 0.9rem; }
+
+  /* ---------- Worry ---------- */
+  .worry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2.6vw, 22px); }
+  .worry-card {
+    background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--yellow);
+    border-radius: var(--radius); padding: clamp(20px, 3.2vw, 28px); box-shadow: var(--shadow);
+  }
+  .worry-card__icon {
+    width: 44px; height: 44px; display: grid; place-content: center;
+    border-radius: 8px; background: var(--yellow); color: var(--navy); margin-bottom: 0.9rem;
+  }
+  .worry-card__icon svg { width: 24px; height: 24px; }
+  .worry-card p { font-size: 0.95rem; line-height: 1.8; }
+
+  /* ---------- Page menu ---------- */
+  .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 2.4vw, 20px); }
+  .menu-item {
+    position: relative; display: flex; flex-direction: column; gap: 0.25rem;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(18px, 3vw, 24px); box-shadow: var(--shadow);
+    text-decoration: none; color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s ease;
+  }
+  .menu-item:hover { transform: translateY(-3px); border-color: var(--yellow); }
+  .menu-item__n {
+    align-self: flex-start; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em;
+    color: var(--navy); background: var(--yellow); border-radius: 6px; padding: 0.2rem 0.5rem; margin-bottom: 0.4rem;
+  }
+  .menu-item__t { font-weight: 700; font-size: 1.06rem; }
+  .menu-item__t::after { content: " \2192"; }
+  .menu-item__d { font-size: 0.78rem; color: var(--navy-soft); }
+
+  /* ---------- Yellow CTA band ---------- */
+  .cta-band { background: var(--yellow); }
+  .cta-band .wrap { padding-block: clamp(44px, 8vw, 76px); text-align: center; }
+  .cta-band h2 { font-size: clamp(1.4rem, 4.4vw, 2rem); }
+  .cta-band p { margin-top: 0.7rem; color: var(--navy); opacity: 0.78; font-size: 0.95rem; }
+  .cta-band__actions { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+
+  /* ---------- Services ---------- */
+  .svc-list { display: grid; gap: clamp(28px, 6vw, 52px); }
+  .svc { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.2rem; align-items: start; }
+  .svc__num {
+    font-weight: 700; font-size: 0.95rem; color: var(--navy);
+    background: var(--yellow); border-radius: 8px; padding: 0.35rem 0.6rem; line-height: 1;
+  }
+  .svc__title { font-size: clamp(1.2rem, 3.4vw, 1.5rem); align-self: center; }
+  .svc__desc { grid-column: 2; color: var(--navy-soft); margin-top: 0.4rem; max-width: var(--measure); font-size: 0.95rem; }
+  .svc__tags { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .svc__tag {
+    font-weight: 700; font-size: 0.78rem; color: var(--navy);
+    background: var(--yellow); border-radius: 999px; padding: 0.45rem 0.85rem;
+  }
+  .svc-hint { margin-top: 1.8rem; font-size: 0.9rem; color: var(--navy-soft); }
+  .svc-hint a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 3px; text-underline-offset: 4px; margin-left: 0.4rem; }
+
+  /* ---------- Flow ---------- */
+  .flow-steps { list-style: none; display: grid; gap: clamp(12px, 2.4vw, 18px); max-width: 44em; }
+  .flow-step {
+    display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: start;
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(16px, 2.6vw, 22px) clamp(18px, 3vw, 26px); box-shadow: var(--shadow);
+  }
+  .flow-step__n {
+    width: 2rem; height: 2rem; display: grid; place-content: center;
+    background: var(--yellow); color: var(--navy); border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+  }
+  .flow-step h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+  .flow-step p { font-size: 0.9rem; color: var(--navy-soft); line-height: 1.8; }
+  .flow-note { margin-top: 1.4rem; font-size: 0.85rem; color: var(--navy-soft); }
+
+  /* ---------- Works ---------- */
+  .works-subhead {
+    font-weight: 700; font-size: 1.05rem; margin-bottom: 0.8rem;
+    padding-bottom: 0.35rem; display: inline-block; border-bottom: 3px solid var(--yellow);
+  }
+  .video-credit {
+    margin-top: clamp(28px, 5vw, 44px);
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--yellow);
+    border-radius: var(--radius); padding: clamp(22px, 3.6vw, 32px); max-width: 44em;
+  }
+  .video-credit h3 { font-size: 1.15rem; margin: 0.2rem 0 0.7rem; }
+  .video-credit p { color: var(--navy-soft); line-height: 1.9; font-size: 0.95rem; }
+  .video-credit p b { color: var(--navy); font-weight: 700; }
+  .video-credit p + p { margin-top: 0.8rem; }
+  .video-credit__note { font-size: 0.8rem; }
+  .works-note {
+    background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--yellow);
+    border-radius: var(--radius); padding: 0.9rem 1.2rem; font-size: 0.86rem;
+    color: var(--navy-soft); margin-bottom: clamp(22px, 4vw, 34px);
+  }
+  .works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 3.4vw, 32px); }
+  .work {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .work__shot {
+    aspect-ratio: 16 / 10; position: relative; overflow: hidden;
+    background: #fafafa; border-bottom: 1px solid var(--line);
+    display: grid; place-content: center; gap: 0.3rem; text-align: center;
+  }
+  .work__shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .work__badge {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    width: 30px; height: 30px; display: grid; place-content: center;
+    background: var(--yellow); color: var(--navy); border-radius: 8px; font-weight: 700; font-size: 0.82rem;
+  }
+  .work__ph { font-weight: 700; font-size: 0.64rem; letter-spacing: 0.22em; color: var(--navy-soft); position: relative; z-index: 1; }
+  .work__phlabel { font-weight: 700; font-size: 1rem; color: var(--navy); position: relative; z-index: 1; }
+  .work__body { padding: 1.2rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+  .work__cat { font-weight: 700; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy-soft); }
+  .work__name { font-size: 1.08rem; }
+  .work__point { font-size: 0.87rem; color: var(--navy-soft); line-height: 1.8; }
+  .work__point b { color: var(--navy); font-weight: 700; }
+
+  /* ---------- Pricing ---------- */
+  .price-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(20px, 3.4vw, 30px); align-items: start; }
+  .price-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(26px, 4vw, 38px); box-shadow: var(--shadow);
+  }
+  .price-card--main { border: 2px solid var(--yellow); }
+  .price-card h3 { font-size: 1.18rem; }
+  .price-card__sub { font-size: 0.84rem; color: var(--navy-soft); margin: 0.3rem 0 1.5rem; }
+  .price-big { display: flex; align-items: baseline; gap: 0.4rem; font-weight: 700; line-height: 1; color: var(--navy); }
+  .price-big .num { font-size: clamp(2.4rem, 8vw, 3.4rem); }
+  .price-big .unit { font-size: 1rem; color: var(--navy-soft); }
+  .price-badge {
+    display: inline-block; margin-top: 0.9rem; font-weight: 700; font-size: 0.74rem; letter-spacing: 0.05em;
+    color: var(--navy); background: var(--yellow); border-radius: 999px; padding: 0.45rem 0.9rem;
+  }
+  .price-list { list-style: none; margin-top: 1.4rem; display: grid; gap: 0.7rem; }
+  .price-list li { position: relative; padding-left: 1.3rem; font-size: 0.9rem; color: var(--navy-soft); line-height: 1.75; }
+  .price-list li::before { content: ""; position: absolute; left: 0.15rem; top: 0.62em; width: 8px; height: 8px; background: var(--yellow); border-radius: 2px; }
+  .price-note {
+    margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
+    font-size: 0.8rem; color: var(--navy-soft); line-height: 1.7;
+  }
+  .price-note .mk { color: var(--navy); font-weight: 700; border-bottom: 2px solid var(--yellow); }
+  .price-est { font-size: 1.05rem; line-height: 1.9; }
+  .price-est strong { border-bottom: 3px solid var(--yellow); }
+  .price-est span { display: block; margin-top: 0.8rem; font-size: 0.85rem; color: var(--navy-soft); }
+  .price-card .btn { margin-top: 1.6rem; }
+
+  /* ---------- Why ---------- */
+  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(16px, 3vw, 26px); }
+  .why-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: clamp(22px, 3.4vw, 30px); box-shadow: var(--shadow);
+  }
+  .why-card__n {
+    width: 2.3rem; height: 2.3rem; display: grid; place-content: center;
+    background: var(--yellow); color: var(--navy); border-radius: 8px; font-weight: 700; font-size: 0.92rem; margin-bottom: 0.9rem;
+  }
+  .why-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.9rem; color: var(--navy-soft); line-height: 1.8; }
+  .why-bio {
+    margin-top: clamp(28px, 5vw, 44px); background: var(--white);
+    border: 1px solid var(--line); border-left: 4px solid var(--yellow);
+    border-radius: var(--radius); padding: clamp(20px, 3.4vw, 28px); max-width: var(--measure);
+  }
+  .why-bio h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.7rem; }
+  .why-bio p { font-size: 0.92rem; color: var(--navy-soft); line-height: 1.85; }
+  .why-bio strong { color: var(--navy); }
+
+  /* ---------- Contact ---------- */
+  .contact-card {
+    background: var(--white); border: 2px solid var(--yellow); border-radius: 12px;
+    padding: clamp(30px, 6vw, 52px); text-align: center; max-width: 40em; margin-inline: auto;
+  }
+  .contact-card h2 { font-size: clamp(1.35rem, 4vw, 1.8rem); }
+  .contact-card p { margin-top: 0.8rem; color: var(--navy-soft); font-size: 0.95rem; }
+  .contact-card__actions { margin-top: 1.7rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .contact-info {
+    margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+    font-size: 0.82rem; color: var(--navy-soft); line-height: 1.9;
+  }
+
+  /* ---------- Footer ---------- */
+  .site-footer { background: var(--white); border-top: 3px solid var(--yellow); color: var(--navy); }
+  .footer-in {
+    max-width: var(--wrap); margin-inline: auto; padding: clamp(34px, 6vw, 52px) var(--pad);
+    display: grid; gap: 1.2rem; justify-items: center; text-align: center;
+  }
+  .footer-brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.05em; color: var(--navy); }
+  .footer-in .btn--ig { background: var(--white); color: var(--navy); border: 1px solid var(--line); }
+  .footer-in .btn--ig:hover { border-color: var(--yellow); }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; justify-content: center; }
+  .footer-nav a { font-weight: 500; font-size: 0.82rem; color: var(--navy); opacity: 0.75; text-decoration: none; }
+  .footer-nav a:hover { opacity: 1; }
+  .footer-fine { font-size: 0.74rem; line-height: 1.9; letter-spacing: 0.03em; color: var(--navy-soft); max-width: 40em; }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .menu-btn { display: inline-flex; }
+    .nav {
+      position: absolute; left: 0; right: 0; top: 100%;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--white); border-bottom: 3px solid var(--yellow);
+      padding: 0.4rem var(--pad) 1.2rem; display: none;
+    }
+    .site-header.menu-open .nav { display: flex; }
+    .nav a:not(.btn) { padding: 0.95rem 0; border-bottom: 1px solid var(--line); }
+    .nav a.is-active { border-color: var(--line); }
+    .nav .btn { margin-top: 0.7rem; justify-content: center; }
+    .worry-grid { grid-template-columns: 1fr; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .works-grid { grid-template-columns: 1fr; }
+    .price-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .hero__blob { width: 150px; right: -58px; top: -62px; }
+  }
+  @media (max-width: 460px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    .svc { grid-template-columns: 1fr; }
+    .svc__num { justify-self: start; }
+    .svc__desc, .svc__tags { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">本文へスキップ</a>
+
+<header class="site-header" id="site-header">
+  <div class="header-in">
+    <!-- 屋号はページ下部スクリプトの BRAND を書き換えると全箇所に反映されます -->
+    <a class="brand" data-brand href="#/">HP作成×映像編集</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">メニュー</button>
+    <nav class="nav" id="nav" aria-label="サイトナビゲーション">
+      <a href="#/services">サービス</a>
+      <a href="#/flow">制作の流れ</a>
+      <a href="#/works">制作例</a>
+      <a href="#/pricing">料金</a>
+      <a href="#/why">選ばれる理由</a>
+      <a href="#/contact">お問い合わせ</a>
+      <a class="btn btn--ig" href="https://www.instagram.com/renshu_hpandhenshu/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <!-- 問い合わせ先：Googleフォーム。下部スクリプトの FORM_URL で全ボタン一括変更できます -->
+      <a class="btn btn--solid btn--cta" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================ HOME ============================ -->
+  <div class="view" data-view="home">
+
+    <section class="hero" id="top">
+      <span class="hero__blob" aria-hidden="true"></span>
+      <span class="hero__ring" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="hero__eyebrow">ホームページ制作・映像制作 ／ 東京・オンライン全国</span>
+        <h1 class="hero__title"><span class="nb">テレビスタッフの</span><span class="nb"><span class="hl">企画力</span>、</span><span class="nb">法人営業を生かした</span><span class="nb"><span class="hl">HP・映像制作</span></span></h1>
+        <p class="hero__lead">
+          <span class="nb">番組づくりで培った&ldquo;見せ方&rdquo;</span>と、<span class="nb">法人営業で培った&ldquo;伝え方&rdquo;。</span>
+          AIも活用して、お店の魅力が伝わるホームページと動画を、<span class="nb">企画から公開まで</span>まとめてつくります。
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--solid btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Worry</span>
+          <h2 class="section__title"><span class="nb">こんなお悩みは</span><span class="nb">ありませんか？</span></h2>
+        </div>
+        <div class="worry-grid">
+          <div class="worry-card reveal">
+            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/><path d="M8 8.5l3 3M11 8.5l-3 3"/></svg></div>
+            <p>ホームページが古い、そもそも無い</p>
+          </div>
+          <div class="worry-card reveal">
+            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.4"/><path d="M8.5 7l1.3-2.2h4.4L15.5 7"/></svg></div>
+            <p>魅力が伝わる写真・動画がなく、SNS発信が弱い</p>
+          </div>
+          <div class="worry-card reveal">
+            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9M10 3h4M18.5 6l1.4-1.4"/><path d="M12 13.5l3 2"/></svg></div>
+            <p>制作会社は高額で、スピード感のある対応が難しい</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Menu</span>
+          <h2 class="section__title"><span class="nb">見たいページを</span><span class="nb">選んでください</span></h2>
+        </div>
+        <nav class="menu-grid" aria-label="ページ一覧">
+          <a class="menu-item reveal" href="#/services"><span class="menu-item__n">01</span><span class="menu-item__t">サービス</span><span class="menu-item__d">できること2つ</span></a>
+          <a class="menu-item reveal" href="#/flow"><span class="menu-item__n">02</span><span class="menu-item__t">制作の流れ</span><span class="menu-item__d">相談〜納品の6ステップ</span></a>
+          <a class="menu-item reveal" href="#/works"><span class="menu-item__n">03</span><span class="menu-item__t">制作例</span><span class="menu-item__d">HPサンプル4件＋映像の実績</span></a>
+          <a class="menu-item reveal" href="#/pricing"><span class="menu-item__n">04</span><span class="menu-item__t">料金</span><span class="menu-item__d">期間限定の特別価格</span></a>
+          <a class="menu-item reveal" href="#/why"><span class="menu-item__n">05</span><span class="menu-item__t">選ばれる理由</span><span class="menu-item__d">4つの強み</span></a>
+          <a class="menu-item reveal" href="#/contact"><span class="menu-item__n">06</span><span class="menu-item__t">お問い合わせ</span><span class="menu-item__d">無料相談・お見積もり</span></a>
+        </nav>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <h2>まずは無料でご相談ください</h2>
+        <p>「うちでもできる？」の段階でOK。初回のご相談・お見積もりは無料です。</p>
+        <div class="cta-band__actions">
+          <a class="btn btn--onband btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
+          <a class="btn btn--sub" href="https://www.instagram.com/renshu_hpandhenshu/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            Instagramはこちら
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ SERVICES ============================ -->
+  <div class="view" data-view="services">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Services</span>
+          <h2 class="section__title">2つのサービス</h2>
+        </div>
+        <div class="svc-list">
+          <article class="svc reveal">
+            <span class="svc__num">01</span>
+            <h3 class="svc__title">ホームページ制作</h3>
+            <p class="svc__desc">小さなお店向けの、スマホで見やすいサイト。AIを使ってスピーディーに。</p>
+            <div class="svc__tags"><span class="svc__tag">1ページ〜</span><span class="svc__tag">スマホ対応</span><span class="svc__tag">特別価格</span></div>
+          </article>
+          <article class="svc reveal">
+            <span class="svc__num">02</span>
+            <h3 class="svc__title">映像・写真の撮影／編集</h3>
+            <p class="svc__desc">店舗紹介・PR・SNSショート動画、写真の撮影と編集。撮影はスマホ、構成は番組づくりの視点で。まずはいちばん低い価格から。</p>
+            <div class="svc__tags"><span class="svc__tag">スマホ撮影</span><span class="svc__tag">撮影＋編集</span><span class="svc__tag">編集だけもOK</span><span class="svc__tag">縦型ショート</span></div>
+          </article>
+        </div>
+        <p class="svc-hint">どちらも、企画から仕上げまでひとりで担当します。<a href="#/flow">制作の流れを見る</a></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ FLOW ============================ -->
+  <div class="view" data-view="flow">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Flow</span>
+          <h2 class="section__title"><span class="nb">ご相談から</span><span class="nb">納品までの流れ</span></h2>
+          <p class="section__lead">はじめてでも迷わないよう、順番にご案内します。</p>
+        </div>
+        <ol class="flow-steps">
+          <li class="flow-step reveal"><span class="flow-step__n">1</span><div><h3>お問い合わせ</h3><p>フォームからご連絡ください。段階は問いません。</p></div></li>
+          <li class="flow-step reveal"><span class="flow-step__n">2</span><div><h3>ヒアリング（オンライン可）</h3><p>30〜45分ほど。ご要望とご予算をお聞きします。</p></div></li>
+          <li class="flow-step reveal"><span class="flow-step__n">3</span><div><h3>ご提案・お見積もり</h3><p>方向性と、範囲・金額・スケジュールを一式でご提示します。</p></div></li>
+          <li class="flow-step reveal"><span class="flow-step__n">4</span><div><h3>制作</h3><p>途中でたたき台を見ていただきながら進めます。</p></div></li>
+          <li class="flow-step reveal"><span class="flow-step__n">5</span><div><h3>ご確認・修正</h3><p>仕上がりを見てから調整します。</p></div></li>
+          <li class="flow-step reveal"><span class="flow-step__n">6</span><div><h3>納品・公開</h3><p>HPは公開まで対応。動画・写真はデータでお渡しします。</p></div></li>
+        </ol>
+        <p class="flow-note reveal">稼働は平日の夜・土日祝が中心です。</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ WORKS ============================ -->
+  <div class="view" data-view="works">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Works</span>
+          <h2 class="section__title">制作例</h2>
+          <p class="section__lead">以下は、制作イメージをお伝えするために用意したサンプルです（すべて架空の店舗）。映像編集は実際の制作経験です。</p>
+        </div>
+
+        <p class="works-subhead reveal">ホームページ制作の例</p>
+        <p class="works-note reveal">※ 掲載中のサンプルは、店名・写真・内容すべて架空です。ご依頼内容に合わせて一から制作します。</p>
+        <div class="works-grid">
+          <article class="work reveal">
+            <!-- 画像を差し替え: 下の span を消して <img src="gym.png" alt="パーソナルジムのサンプルサイト"> を入れてください -->
+            <div class="work__shot"><span class="work__badge">1</span><img src="images/gym.jpg" alt="パーソナルジムのサンプルサイト" loading="lazy"></div>
+            <div class="work__body">
+              <p class="work__cat">Personal Gym</p>
+              <p class="work__name">パーソナルジムのサイト</p>
+              <p class="work__point"><b>意識したポイント：</b>体験予約のボタンを最上部に固定。ビフォーアフター写真で&ldquo;結果&rdquo;が一目で伝わる構成に。</p>
+            </div>
+          </article>
+          <article class="work reveal">
+            <!-- 画像を差し替え: <img src="salon.png" alt="美容室のサンプルサイト"> -->
+            <div class="work__shot"><span class="work__badge">2</span><img src="images/salon.jpg" alt="美容室のサンプルサイト" loading="lazy"></div>
+            <div class="work__body">
+              <p class="work__cat">Hair Salon</p>
+              <p class="work__name">美容室のサイト</p>
+              <p class="work__point"><b>意識したポイント：</b>スタイル写真を大きく見せるレイアウト。スマホでのギャラリー閲覧のしやすさを最優先に。</p>
+            </div>
+          </article>
+          <article class="work reveal">
+            <!-- 画像を差し替え: <img src="restaurant.png" alt="飲食店のサンプルサイト"> -->
+            <div class="work__shot"><span class="work__badge">3</span><img src="images/restaurant.jpg" alt="飲食店のサンプルサイト" loading="lazy"></div>
+            <div class="work__body">
+              <p class="work__cat">Restaurant</p>
+              <p class="work__name">飲食店のサイト</p>
+              <p class="work__point"><b>意識したポイント：</b>料理と店内の雰囲気写真を主役に。メニュー・地図・予約への動線をできるだけ短く。</p>
+            </div>
+          </article>
+          <article class="work reveal">
+            <!-- 画像を差し替え: <img src="guesthouse.png" alt="ゲストハウス・民泊のサンプルサイト"> -->
+            <div class="work__shot"><span class="work__badge">4</span><img src="images/guesthouse.jpg" alt="ゲストハウス・民泊のサンプルサイト" loading="lazy"></div>
+            <div class="work__body">
+              <p class="work__cat">Guest House</p>
+              <p class="work__name">ゲストハウス・民泊のサイト</p>
+              <p class="work__point"><b>意識したポイント：</b>部屋と雰囲気を写真で大きく見せ、Airbnbなどの予約ページへのボタンを最上部に。チェックイン方法・周辺情報も1画面で分かるように。</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="video-credit reveal">
+          <span class="eyebrow">Video</span>
+          <h3>映像編集の実績</h3>
+          <p>これまで、<b>バラエティ番組</b>や<b>芸能人YouTubeチャンネル</b>の制作に、AD・ディレクターとして携わってきました。企画・構成から撮影・編集まで、テレビの現場で培ったテンポとまとめ方を、お店の紹介動画にも活かします。</p>
+          <p>個人でも<b>旅行動画</b>の撮影・編集を続けており、<b>インサートカット</b>や<b>紹介VTR</b>の構成づくりが得意です。</p>
+          <p class="video-credit__note">※ 守秘義務のある案件が多いため、個別のタイトルは掲載していません。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ PRICING ============================ -->
+  <div class="view" data-view="pricing">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2 class="section__title">料金</h2>
+          <p class="section__lead">分かりやすさを大切にしています。表示は税込です。</p>
+        </div>
+        <div class="price-grid">
+          <div class="price-card price-card--main reveal">
+            <h3>ホームページ制作</h3>
+            <p class="price-card__sub">スマホ対応・シンプルなお店のサイト</p>
+            <p class="price-big"><span class="num">3,000</span><span class="unit">円（税込）</span></p>
+            <span class="price-badge">期間限定の特別価格</span>
+            <ul class="price-list">
+              <li>制作費は 3,000円（税込）ぽっきり。追加料金はありません。</li>
+              <li>サーバー・ドメイン代はお客様ご負担（実費）。取得のお手伝いはします。</li>
+            </ul>
+            <p class="price-note">
+              ※ 実績を増やすための期間限定価格です。受付できる件数には上限があります。<br>
+              正式な料金は決まり次第、あらためてご案内します。
+            </p>
+            <a class="btn btn--solid" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">この価格で相談する</a>
+          </div>
+          <div class="price-card reveal">
+            <h3>映像・写真の撮影／編集</h3>
+            <p class="price-card__sub">店舗紹介・PR・SNSショート動画、写真撮影と編集</p>
+            <p class="price-est">
+              <strong>内容に応じてお見積もりします（初回相談無料）。</strong>
+              <span>やりたいこと・ご予算をお聞かせいただき、一式でご提示します。</span>
+            </p>
+            <p class="price-note">
+              撮影はスマートフォンで行います（大型の専用機材は使いません）。そのぶん、まずは<span class="mk">いちばん低い価格</span>からご案内できます。スマホでも、企画・構成と編集で&ldquo;ちゃんと見られる&rdquo;動画は十分つくれます。
+            </p>
+            <a class="btn btn--sub" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">見積もりを相談する</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ WHY ============================ -->
+  <div class="view" data-view="why">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Why Us</span>
+          <h2 class="section__title">選ばれる理由</h2>
+          <p class="section__lead">「AIで安く早く」だけではなく、<strong>番組づくりの企画力と法人営業の提案力</strong>を掛け合わせています。</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card reveal">
+            <div class="why-card__n">01</div>
+            <h3>テレビ仕込みの企画・構成力</h3>
+            <p>順番・テンポ・言葉選びで、「最後まで見たくなる・読みたくなる」形に設計します。</p>
+          </div>
+          <div class="why-card reveal">
+            <div class="why-card__n">02</div>
+            <h3>法人営業で鍛えた提案力</h3>
+            <p>「言われた通り」ではなく、「このお店ならこう見せる」というご提案から一緒に考えます。</p>
+          </div>
+          <div class="why-card reveal">
+            <div class="why-card__n">03</div>
+            <h3>AI活用でスピード＆低コスト</h3>
+            <p>調査も下書きもAIを活用。浮いた時間とコストは、価格としてお返しします。</p>
+          </div>
+          <div class="why-card reveal">
+            <div class="why-card__n">04</div>
+            <h3>企画から納品までひとりで一気通貫</h3>
+            <p>窓口がひとつなので意図がぶれず、やり取りもシンプルです。</p>
+          </div>
+        </div>
+        <div class="why-bio reveal">
+          <h3>運営者について</h3>
+          <p>バラエティ番組やYouTubeチャンネルの制作現場で、<strong>AD・ディレクター</strong>として企画から編集までを経験。いまは会社員として<strong>法人営業</strong>をしています。その2つの経験とAIを掛け合わせて、小さなお店の発信をお手伝いしています。いまは実績を増やすため、期間限定の特別価格でご案内しています。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================ CONTACT ============================ -->
+  <div class="view" data-view="contact">
+    <section class="section">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Contact</span>
+          <h2 class="section__title">お問い合わせ</h2>
+        </div>
+        <div class="contact-card reveal">
+          <h2>まずは無料でご相談ください</h2>
+          <p>「うちでもできる？」の段階でOK。初回のご相談・お見積もりは無料です。</p>
+          <div class="contact-card__actions">
+            <a class="btn btn--solid btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
+            <a class="btn btn--sub" href="https://www.instagram.com/renshu_hpandhenshu/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+              Instagramはこちら
+            </a>
+          </div>
+          <p class="contact-info">
+            対応エリア：東京23区が中心。ホームページ制作はオンラインで全国対応。<br>
+            稼働：平日の夜・土日祝が中心です。
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-in">
+    <p class="footer-brand" data-brand>HP作成×映像編集</p>
+    <a class="btn btn--ig" href="https://www.instagram.com/renshu_hpandhenshu/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+      Instagramはこちら
+    </a>
+    <nav class="footer-nav" aria-label="フッターナビゲーション">
+      <a href="#/services">サービス</a>
+      <a href="#/flow">制作の流れ</a>
+      <a href="#/works">制作例</a>
+      <a href="#/pricing">料金</a>
+      <a href="#/why">選ばれる理由</a>
+      <a href="#/contact">お問い合わせ</a>
+    </nav>
+    <p class="footer-fine">
+      掲載している制作例は、制作の雰囲気をお伝えするために用意した架空のサンプルです（実在の店舗ではありません）。屋号は仮のものです。<br>
+      &copy; 2026 <span data-brand>HP作成×映像編集</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ===== 屋号：本番の屋号が決まったら、この1行だけ書き換えてください ===== */
+    var BRAND = 'HP作成×映像編集';  /* 仮の屋号。正式決定したらここだけ書き換え */
+    /* ===== お問い合わせ：Googleフォームの正式URL（https://forms.gle/xxxx）を入れてください ===== */
+    var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform';
+    /* ================================================================= */
+
+    document.querySelectorAll('[data-brand]').forEach(function (el) { el.textContent = BRAND; });
+    if (FORM_URL) {
+      document.querySelectorAll('[data-form]').forEach(function (el) { el.setAttribute('href', FORM_URL); });
+    }
+
+    var body = document.body;
+    var header = document.getElementById('site-header');
+    var menuBtn = document.querySelector('.menu-btn');
+    var views = Array.prototype.slice.call(document.querySelectorAll('[data-view]'));
+    var viewNames = views.map(function (v) { return v.getAttribute('data-view'); });
+
+    var titles = {
+      home: BRAND + '｜企画からつくる、ホームページと動画',
+      services: 'サービス｜' + BRAND,
+      flow: '制作の流れ｜' + BRAND,
+      works: '制作例｜' + BRAND,
+      pricing: '料金｜' + BRAND,
+      why: '選ばれる理由｜' + BRAND,
+      contact: 'お問い合わせ｜' + BRAND
+    };
+
+    body.classList.add('js-ready');
+
+    function parseHash() {
+      var h = location.hash || '';
+      if (h.indexOf('#/') === 0) {
+        var name = h.slice(2);
+        return viewNames.indexOf(name) > -1 ? name : 'home';
+      }
+      return 'home';
+    }
+
+    function render(name) {
+      name = name || parseHash();
+      if (viewNames.indexOf(name) < 0) { name = 'home'; }
+      var target = null;
+      views.forEach(function (v) {
+        var on = v.getAttribute('data-view') === name;
+        v.classList.toggle('is-active', on);
+        if (on) { target = v; }
+      });
+      document.title = titles[name] || titles.home;
+      if (header) { header.classList.remove('menu-open'); }
+      if (menuBtn) { menuBtn.setAttribute('aria-expanded', 'false'); }
+
+      var links = document.querySelectorAll('.nav a[href^="#/"], .footer-nav a[href^="#/"]');
+      Array.prototype.forEach.call(links, function (a) {
+        a.classList.toggle('is-active', a.getAttribute('href') === '#/' + name);
+      });
+
+      if (target) {
+        Array.prototype.forEach.call(target.querySelectorAll('.reveal'), function (el) { el.classList.add('in'); });
+        var h1 = target.querySelector('h1, h2');
+        if (h1) { h1.setAttribute('tabindex', '-1'); try { h1.focus({ preventScroll: true }); } catch (e) { h1.focus(); } }
+      }
+      window.scrollTo(0, 0);
+    }
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest ? e.target.closest('a[href^="#/"]') : null;
+      if (!a) { return; }
+      e.preventDefault();
+      var name = a.getAttribute('href').slice(2);
+      if (name === '' || viewNames.indexOf(name) < 0) { name = 'home'; }
+      try { history.replaceState(null, '', name === 'home' ? '#/' : '#/' + name); } catch (err) {}
+      render(name);
+    });
+
+    window.addEventListener('hashchange', function () { render(); });
+
+    if (menuBtn && header) {
+      menuBtn.addEventListener('click', function () {
+        var open = header.classList.toggle('menu-open');
+        menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    }
+
+    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if ('IntersectionObserver' in window && revealEls.length) {
+      var rev = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); obs.unobserve(entry.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+      revealEls.forEach(function (el) { rev.observe(el); });
+    } else {
+      revealEls.forEach(function (el) { el.classList.add('in'); });
+    }
+
+    render();
+  })();
+</script>
+
+</body>
+</html>
