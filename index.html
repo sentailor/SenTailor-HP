@@ -824,8 +824,6 @@
 
       if (target) {
         Array.prototype.forEach.call(target.querySelectorAll('.reveal'), function (el) { el.classList.add('in'); });
-        var h1 = target.querySelector('h1, h2');
-        if (h1) { h1.setAttribute('tabindex', '-1'); try { h1.focus({ preventScroll: true }); } catch (e) { h1.focus(); } }
       }
       window.scrollTo(0, 0);
     }
