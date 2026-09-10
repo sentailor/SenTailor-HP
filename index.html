@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<title>HP作成×映像編集｜企画からつくる、ホームページと動画</title>
-<meta name="description" content="HP作成×映像編集｜元テレビ番組スタッフ・現法人営業による、小規模店舗向けのホームページ制作と映像・写真の撮影／編集。番組づくりの企画力・構成力とAI活用で、はやく・お手頃に。東京23区＋オンライン全国。期間限定でHP制作費3,000円（税込）。">
+<title>Yamato Tailor（ヤマトテーラー）｜一店舗ずつに、仕立てるように。</title>
+<meta name="description" content="Yamato Tailor（ヤマトテーラー）｜一店舗ずつに、仕立てるように。元テレビ番組スタッフ・現法人営業による、小規模店舗向けのホームページ制作と映像・写真の撮影／編集。企画力・構成力・編集力・提案力とAI活用を、依頼主ごとに一つひとつ組み立てます。東京23区＋オンライン全国。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <style>
   /* ===================================================================
-     ブランドスタイルガイド適用
-     - 白 #FFFFFF（ベース） / 黄 #F5C518（面・アクセント） / 濃紺 #1B1F3B（文字専用）
-     - グレーは細い枠線・区切り線のみ / 明朝・装飾フォントなし・ゴシック体で統一
+     Yamato Tailor ブランド
+     - 白 #FFFFFF（ベース） / ゴールドイエロー #F5C518（面・金糸/真鍮アクセント）
+     - 濃紺 #1B1F3B（文字専用） / 深みのある金 #B8901F（細い線・小さなアクセント）
+     - 見出し・ロゴ＝上品なセリフ体 / 本文＝読みやすいゴシック体
+     - 細いピンストライプを区切り・背景に控えめに
      =================================================================== */
   :root {
     color-scheme: light;
@@ -25,6 +27,9 @@
     --shadow: 0 1px 3px rgba(27, 31, 59, 0.06), 0 14px 30px -20px rgba(27, 31, 59, 0.16);
 
     --sans: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+    --serif: "Playfair Display", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+    --brass: #b8901f;
+    --pin: rgba(27, 31, 59, 0.055);
 
     --wrap: 1060px;
     --measure: 34em;
@@ -50,7 +55,8 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 { font-weight: 700; line-height: 1.5; letter-spacing: 0.01em; }
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; line-height: 1.5; letter-spacing: 0.02em; }
+  .why-bio h3, .works-subhead { font-family: var(--sans); }
 
   img { max-width: 100%; height: auto; display: block; }
   a { color: inherit; }
@@ -64,10 +70,10 @@
 
   .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
 
-  /* 黄色マーカー（見出しの面ハイライト） */
+  /* 見出しの語を「金糸の二重線」で仕立てる */
   .hl {
-    background: linear-gradient(transparent 60%, var(--yellow) 60%, var(--yellow) 94%, transparent 94%);
-    padding: 0 0.08em;
+    border-bottom: 3px double var(--yellow);
+    padding-bottom: 0.06em;
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
   }
@@ -85,7 +91,7 @@
   .btn--lg { padding: 1.15rem 2.2rem; font-size: 1rem; }
 
   /* メインCTA：黄色の背景＋濃紺の文字 */
-  .btn--solid { background: var(--yellow); color: var(--navy); box-shadow: 0 10px 24px -14px rgba(245, 197, 24, 0.9); }
+  .btn--solid { background: var(--yellow); color: var(--navy); border: 1px solid var(--brass); box-shadow: 0 8px 20px -14px rgba(184, 144, 31, 0.85); }
   .btn--solid:hover { background: #e6b813; }
 
   /* サブ：白背景＋濃紺の文字＋黄色の下線 */
@@ -114,10 +120,9 @@
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     position: relative;
   }
-  .brand {
-    font-weight: 700; font-size: 1.02rem; letter-spacing: 0.04em;
-    color: var(--navy); text-decoration: none; white-space: nowrap;
-  }
+  .brand { display: inline-flex; flex-direction: column; line-height: 1.05; text-decoration: none; color: var(--navy); }
+  .brand__main { font-family: var(--serif); font-weight: 600; font-size: 1.16rem; letter-spacing: 0.16em; }
+  .brand__sub { font-family: var(--sans); font-weight: 500; font-size: 0.6rem; letter-spacing: 0.34em; color: var(--navy-soft); margin-top: 3px; }
   .nav { display: flex; align-items: center; gap: clamp(0.55rem, 1.7vw, 1.3rem); }
   .nav a:not(.btn) {
     font-weight: 500; font-size: 0.84rem; letter-spacing: 0.02em;
@@ -166,23 +171,33 @@
     padding-bottom: 0.35rem; border-bottom: 3px solid var(--yellow); margin-bottom: 1rem;
   }
   .section__title {
-    font-size: clamp(1.5rem, 4.4vw, 2.15rem); text-wrap: balance;
+    position: relative; font-size: clamp(1.5rem, 4.4vw, 2.15rem); text-wrap: balance;
+    padding-bottom: 0.55rem;
+  }
+  .section__title::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    width: 58px; border-bottom: 3px dashed var(--yellow);
   }
   .section__lead { margin-top: 1rem; color: var(--navy-soft); font-size: 0.98rem; }
   .section__lead strong { color: var(--navy); }
 
   /* ---------- Hero ---------- */
-  .hero { position: relative; overflow: hidden; padding-block: clamp(56px, 11vw, 112px); }
-  .hero__blob {
-    position: absolute; z-index: 0; border-radius: 50%;
-    width: min(56vw, 440px); aspect-ratio: 1;
-    background: var(--yellow); right: -12%; top: -20%;
-  }
+  .hero { position: relative; overflow: hidden; padding-block: clamp(52px, 10vw, 104px);
+    background-image: repeating-linear-gradient(90deg, transparent 0 6px, var(--pin) 6px 7px); }
   .hero > .wrap { position: relative; z-index: 1; }
   .hero__eyebrow {
-    display: inline-block; font-weight: 700; font-size: 0.74rem; letter-spacing: 0.14em;
-    color: var(--navy); background: var(--yellow);
-    border-radius: 999px; padding: 0.5rem 1.05rem; margin-bottom: 1.5rem;
+    display: inline-block; font-family: var(--sans); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em;
+    color: var(--navy); background: var(--white); border: 1px solid var(--brass);
+    border-radius: 999px; padding: 0.45rem 1rem; margin-bottom: 1.2rem;
+  }
+  .hero__concept {
+    font-family: var(--serif); font-style: italic; font-weight: 500;
+    font-size: clamp(1.05rem, 3vw, 1.42rem); color: var(--navy);
+    letter-spacing: 0.03em; margin-bottom: 0.55rem;
+  }
+  .hero__concept::before {
+    content: ""; display: inline-block; width: 26px; height: 1px;
+    background: var(--brass); vertical-align: middle; margin-right: 0.65rem;
   }
   .hero__title {
     font-size: clamp(1.5rem, 5.8vw, 3.15rem); line-height: 1.45;
@@ -221,12 +236,12 @@
     align-self: flex-start; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.08em;
     color: var(--navy); background: var(--yellow); border-radius: 6px; padding: 0.2rem 0.5rem; margin-bottom: 0.4rem;
   }
-  .menu-item__t { font-weight: 700; font-size: 1.06rem; }
+  .menu-item__t { font-family: var(--serif); font-weight: 600; font-size: 1.08rem; }
   .menu-item__t::after { content: " \2192"; }
   .menu-item__d { font-size: 0.78rem; color: var(--navy-soft); }
 
   /* ---------- Yellow CTA band ---------- */
-  .cta-band { background: var(--yellow); }
+  .cta-band { background: var(--yellow); background-image: repeating-linear-gradient(90deg, transparent 0 7px, rgba(27, 31, 59, 0.06) 7px 8px); }
   .cta-band .wrap { padding-block: clamp(44px, 8vw, 76px); text-align: center; }
   .cta-band h2 { font-size: clamp(1.4rem, 4.4vw, 2rem); }
   .cta-band p { margin-top: 0.7rem; color: var(--navy); opacity: 0.78; font-size: 0.95rem; }
@@ -344,9 +359,11 @@
     padding: clamp(22px, 3.4vw, 30px); box-shadow: var(--shadow);
   }
   .why-card__n {
-    width: 2.3rem; height: 2.3rem; display: grid; place-content: center;
-    background: var(--yellow); color: var(--navy); border-radius: 8px; font-weight: 700; font-size: 0.92rem; margin-bottom: 0.9rem;
+    width: 2.5rem; height: 2.5rem; display: grid; place-content: center;
+    background: var(--yellow); color: var(--navy); border: 1px solid var(--brass);
+    border-radius: 8px; margin-bottom: 0.9rem;
   }
+  .why-card__n svg { width: 22px; height: 22px; }
   .why-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
   .why-card p { font-size: 0.9rem; color: var(--navy-soft); line-height: 1.8; }
   .why-bio {
@@ -377,11 +394,27 @@
     max-width: var(--wrap); margin-inline: auto; padding: clamp(34px, 6vw, 52px) var(--pad);
     display: grid; gap: 1.2rem; justify-items: center; text-align: center;
   }
-  .footer-brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.05em; color: var(--navy); }
+  .footer-brand { align-items: center; text-align: center; }
+  .footer-brand .brand__main { font-size: 1.1rem; }
   .footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.3rem; justify-content: center; }
   .footer-nav a { font-weight: 500; font-size: 0.82rem; color: var(--navy); opacity: 0.75; text-decoration: none; }
   .footer-nav a:hover { opacity: 1; }
   .footer-fine { font-size: 0.74rem; line-height: 1.9; letter-spacing: 0.03em; color: var(--navy-soft); max-width: 40em; }
+
+  /* ---------- Concept / pinstripe ---------- */
+  .rule-pin {
+    height: 8px;
+    background: repeating-linear-gradient(90deg, var(--brass) 0 1px, transparent 1px 6px);
+    opacity: 0.45;
+  }
+  .section--pin {
+    background-image: repeating-linear-gradient(90deg, transparent 0 7px, var(--pin) 7px 8px);
+  }
+  .concept .wrap { max-width: 46em; }
+  .concept__lead {
+    font-size: clamp(1.02rem, 2.4vw, 1.14rem); line-height: 2.1; color: var(--navy);
+  }
+  .concept__lead .q { color: var(--brass); font-style: normal; }
 
   /* ---------- Reveal ---------- */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -407,9 +440,6 @@
     .price-grid { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
   }
-  @media (max-width: 640px) {
-    .hero__blob { width: 150px; right: -58px; top: -62px; }
-  }
   @media (max-width: 460px) {
     .menu-grid { grid-template-columns: 1fr; }
     .svc { grid-template-columns: 1fr; }
@@ -428,8 +458,10 @@
 
 <header class="site-header" id="site-header">
   <div class="header-in">
-    <!-- 屋号はページ下部スクリプトの BRAND を書き換えると全箇所に反映されます -->
-    <a class="brand" data-brand href="#/">HP作成×映像編集</a>
+    <a class="brand" href="#/">
+      <span class="brand__main">YAMATO TAILOR</span>
+      <span class="brand__sub">ヤマトテーラー</span>
+    </a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">メニュー</button>
     <nav class="nav" id="nav" aria-label="サイトナビゲーション">
       <a href="#/services">サービス</a>
@@ -438,7 +470,7 @@
       <a href="#/pricing">料金</a>
       <a href="#/why">選ばれる理由</a>
       <a href="#/contact">お問い合わせ</a>
-      <a class="ig-btn" href="https://www.instagram.com/hpandeizohenshu" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+      <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
       <!-- 問い合わせ先：Googleフォーム。下部スクリプトの FORM_URL で全ボタン一括変更できます -->
       <a class="btn btn--solid btn--cta" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談</a>
     </nav>
@@ -451,10 +483,9 @@
   <div class="view" data-view="home">
 
     <section class="hero" id="top">
-      <span class="hero__blob" aria-hidden="true"></span>
-      <span class="hero__ring" aria-hidden="true"></span>
       <div class="wrap">
         <span class="hero__eyebrow">ホームページ制作・映像制作 ／ 東京・オンライン全国</span>
+        <p class="hero__concept">一店舗ずつに、仕立てるように。</p>
         <h1 class="hero__title"><span class="nb">テレビスタッフの</span><span class="nb"><span class="hl">企画力</span>、</span><span class="nb">法人営業を生かした</span><span class="nb"><span class="hl">HP・映像制作</span></span></h1>
         <p class="hero__lead">
           <span class="nb">番組づくりで培った&ldquo;見せ方&rdquo;</span>と、<span class="nb">法人営業で培った&ldquo;伝え方&rdquo;。</span>
@@ -463,6 +494,18 @@
         <div class="hero__actions">
           <a class="btn btn--solid btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
         </div>
+      </div>
+    </section>
+
+    <div class="rule-pin" aria-hidden="true"></div>
+
+    <section class="section section--pin" id="concept">
+      <div class="wrap">
+        <div class="section__head reveal">
+          <span class="eyebrow">Concept</span>
+          <h2 class="section__title">仕立てるように、つくる。</h2>
+        </div>
+        <p class="concept__lead reveal">サヴィルロウの仕立て屋が、顧客一人ひとりの体型に合わせて時間をかけてスーツを仕立てるように。テレビ番組制作で培った企画力・構成力・編集力、法人営業で培った提案力を、依頼主それぞれの魅力に合わせて一つひとつ組み立てます。AIを活用したスピード感と、人の手による<span class="q">&ldquo;仕立て&rdquo;</span>の丁寧さを両立させることが、私たちの軸です。</p>
       </div>
     </section>
 
@@ -512,7 +555,7 @@
         <p>「うちでもできる？」の段階でOK。初回のご相談・お見積もりは無料です。</p>
         <div class="cta-band__actions">
           <a class="btn btn--onband btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
-          <a class="ig-btn" href="https://www.instagram.com/hpandeizohenshu" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
     </section>
@@ -682,22 +725,22 @@
         </div>
         <div class="why-grid">
           <div class="why-card reveal">
-            <div class="why-card__n">01</div>
+            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6.5" r="2.3"/><circle cx="6" cy="17.5" r="2.3"/><path d="M8.2 7.6 19 17.5M8.2 16.4 19 6.5"/></svg></div>
             <h3>テレビ仕込みの企画・構成力</h3>
             <p>順番・テンポ・言葉選びで、「最後まで見たくなる・読みたくなる」形に設計します。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n">02</div>
+            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6H7a4 4 0 0 0 0 8h10a4 4 0 0 1 0 8H6"/><path d="M9.5 6v2M12.5 6v2M15 10v2M12 18v-2"/></svg></div>
             <h3>法人営業で鍛えた提案力</h3>
             <p>「言われた通り」ではなく、「このお店ならこう見せる」というご提案から一緒に考えます。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n">03</div>
+            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20 17 7"/><path d="m15.4 5.4 3.2 3.2"/><path d="M4 20c0-2.4 2-2.4 2-4.8s-2-2.4-2-4.8"/></svg></div>
             <h3>AI活用でスピード＆低コスト</h3>
             <p>調査も下書きもAIを活用。浮いた時間とコストは、価格としてお返しします。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n">04</div>
+            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8M8 20h8"/><path d="M9 4v16M15 4v16"/><path d="M9 8h6M9 12h6M9 16h6"/><path d="M15 12c2.3 0 3.6 1.6 3.6 3.6"/></svg></div>
             <h3>企画から納品までひとりで一気通貫</h3>
             <p>窓口がひとつなので意図がぶれず、やり取りもシンプルです。</p>
           </div>
@@ -723,7 +766,7 @@
           <p>「うちでもできる？」の段階でOK。初回のご相談・お見積もりは無料です。</p>
           <div class="contact-card__actions">
             <a class="btn btn--solid btn--lg" data-form href="https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform" target="_blank" rel="noopener">無料相談・お見積もりはこちら</a>
-            <a class="ig-btn" href="https://www.instagram.com/hpandeizohenshu" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+            <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
           </div>
           <p class="contact-info">
             対応エリア：東京23区が中心。ホームページ制作はオンラインで全国対応。<br>
@@ -738,8 +781,11 @@
 
 <footer class="site-footer">
   <div class="footer-in">
-    <p class="footer-brand" data-brand>HP作成×映像編集</p>
-    <a class="ig-btn" href="https://www.instagram.com/hpandeizohenshu" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+    <a class="brand footer-brand" href="#/">
+      <span class="brand__main">YAMATO TAILOR</span>
+      <span class="brand__sub">ヤマトテーラー</span>
+    </a>
+    <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
     <nav class="footer-nav" aria-label="フッターナビゲーション">
       <a href="#/services">サービス</a>
       <a href="#/flow">制作の流れ</a>
@@ -749,8 +795,8 @@
       <a href="#/contact">お問い合わせ</a>
     </nav>
     <p class="footer-fine">
-      掲載している制作例は、制作の雰囲気をお伝えするために用意した架空のサンプルです（実在の店舗ではありません）。屋号は仮のものです。<br>
-      &copy; 2026 <span data-brand>HP作成×映像編集</span>
+      掲載している制作例は、制作の雰囲気をお伝えするために用意した架空のサンプルです（実在の店舗ではありません）。<br>
+      &copy; 2026 Yamato Tailor
     </p>
   </div>
 </footer>
@@ -759,15 +805,18 @@
   (function () {
     'use strict';
 
-    /* ===== 屋号：本番の屋号が決まったら、この1行だけ書き換えてください ===== */
-    var BRAND = 'HP作成×映像編集';  /* 仮の屋号。正式決定したらここだけ書き換え */
-    /* ===== お問い合わせ：Googleフォームの正式URL（https://forms.gle/xxxx）を入れてください ===== */
+    var BRAND = 'Yamato Tailor';
+    /* お問い合わせ：Googleフォームの回答URL */
     var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform';
+    /* Instagram：プロフィール開設後にURLを入れると全ボタンに反映（空ならプレースホルダーのまま） */
+    var IG_URL = '';
     /* ================================================================= */
 
-    document.querySelectorAll('[data-brand]').forEach(function (el) { el.textContent = BRAND; });
     if (FORM_URL) {
       document.querySelectorAll('[data-form]').forEach(function (el) { el.setAttribute('href', FORM_URL); });
+    }
+    if (IG_URL) {
+      document.querySelectorAll('[data-ig]').forEach(function (el) { el.setAttribute('href', IG_URL); });
     }
 
     var body = document.body;
@@ -777,7 +826,7 @@
     var viewNames = views.map(function (v) { return v.getAttribute('data-view'); });
 
     var titles = {
-      home: BRAND + '｜企画からつくる、ホームページと動画',
+      home: BRAND + '｜一店舗ずつに、仕立てるように。',
       services: 'サービス｜' + BRAND,
       flow: '制作の流れ｜' + BRAND,
       works: '制作例｜' + BRAND,
