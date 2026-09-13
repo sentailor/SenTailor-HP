@@ -240,10 +240,9 @@
     border-radius: var(--radius); padding: clamp(20px, 3.2vw, 28px); box-shadow: var(--shadow);
   }
   .worry-card__icon {
-    width: 44px; height: 44px; display: grid; place-content: center;
-    border-radius: 8px; background: var(--yellow); color: var(--navy); margin-bottom: 0.9rem;
+    width: 3.4rem; height: 3.4rem; margin-bottom: 0.9rem;
   }
-  .worry-card__icon svg { width: 24px; height: 24px; }
+  .worry-card__icon img { width: 100%; height: 100%; object-fit: contain; }
   .worry-card p { font-size: 0.95rem; line-height: 1.8; }
 
   /* ---------- Page menu ---------- */
@@ -297,6 +296,8 @@
     background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
     padding: clamp(16px, 2.6vw, 22px) clamp(18px, 3vw, 26px); box-shadow: var(--shadow);
   }
+  .flow-step__lead { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .flow-step__icon { width: 40px; height: 40px; object-fit: contain; }
   .flow-step__n {
     width: 2rem; height: 2rem; display: grid; place-content: center;
     background: var(--yellow); color: var(--navy); border-radius: 8px; font-weight: 700; font-size: 0.9rem;
@@ -407,6 +408,8 @@
     background: var(--white); border: 2px solid var(--yellow); border-radius: 12px;
     padding: clamp(30px, 6vw, 52px); text-align: center; max-width: 40em; margin-inline: auto;
   }
+  .contact-card__icon { width: 56px; height: 56px; object-fit: contain; margin: 0 auto 1rem; display: block; }
+  .contact-info__icon { width: 16px; height: 16px; object-fit: contain; vertical-align: -3px; margin-right: 0.3rem; }
   .contact-card h2 { font-size: clamp(1.35rem, 4vw, 1.8rem); }
   .contact-card p { margin-top: 0.8rem; color: var(--navy-soft); font-size: 0.95rem; }
   .contact-card__actions { margin-top: 1.7rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
@@ -565,15 +568,15 @@
         </div>
         <div class="worry-grid">
           <div class="worry-card reveal">
-            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M9 21h6M12 17v4"/><path d="M8 8.5l3 3M11 8.5l-3 3"/></svg></div>
+            <div class="worry-card__icon"><img src="images/icon-web-dev.png" alt="" width="160" height="160"></div>
             <p>ホームページが古い、そもそも無い</p>
           </div>
           <div class="worry-card reveal">
-            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.4"/><path d="M8.5 7l1.3-2.2h4.4L15.5 7"/></svg></div>
+            <div class="worry-card__icon"><img src="images/icon-sns-content.png" alt="" width="160" height="160"></div>
             <p>魅力が伝わる写真・動画がなく、SNS発信が弱い</p>
           </div>
           <div class="worry-card reveal">
-            <div class="worry-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9M10 3h4M18.5 6l1.4-1.4"/><path d="M12 13.5l3 2"/></svg></div>
+            <div class="worry-card__icon"><img src="images/icon-pricing.png" alt="" width="160" height="160"></div>
             <p>制作会社は高額で、スピード感のある対応が難しい</p>
           </div>
         </div>
@@ -652,12 +655,12 @@
           <p class="section__lead">はじめてでも迷わないよう、順番にご案内します。</p>
         </div>
         <ol class="flow-steps">
-          <li class="flow-step reveal"><span class="flow-step__n">1</span><div><h3>お問い合わせ</h3><p>フォームからご連絡ください。段階は問いません。</p></div></li>
-          <li class="flow-step reveal"><span class="flow-step__n">2</span><div><h3>ヒアリング（オンライン可）</h3><p>30〜45分ほど。ご要望とご予算をお聞きします。</p></div></li>
-          <li class="flow-step reveal"><span class="flow-step__n">3</span><div><h3>ご提案・お見積もり</h3><p>方向性と、範囲・金額・スケジュールを一式でご提示します。</p></div></li>
-          <li class="flow-step reveal"><span class="flow-step__n">4</span><div><h3>制作</h3><p>途中でたたき台を見ていただきながら進めます。</p></div></li>
-          <li class="flow-step reveal"><span class="flow-step__n">5</span><div><h3>ご確認・修正</h3><p>仕上がりを見てから調整します。</p></div></li>
-          <li class="flow-step reveal"><span class="flow-step__n">6</span><div><h3>納品・公開</h3><p>HPは公開まで対応。動画・写真はデータでお渡しします。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-contact.png" alt="" width="40" height="40"><span class="flow-step__n">1</span></div><div><h3>お問い合わせ</h3><p>フォームからご連絡ください。段階は問いません。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-trust-partnership.png" alt="" width="40" height="40"><span class="flow-step__n">2</span></div><div><h3>ヒアリング（オンライン可）</h3><p>30〜45分ほど。ご要望とご予算をお聞きします。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-pricing.png" alt="" width="40" height="40"><span class="flow-step__n">3</span></div><div><h3>ご提案・お見積もり</h3><p>方向性と、範囲・金額・スケジュールを一式でご提示します。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-pattern-design.png" alt="" width="40" height="40"><span class="flow-step__n">4</span></div><div><h3>制作</h3><p>途中でたたき台を見ていただきながら進めます。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-needle-thread.png" alt="" width="40" height="40"><span class="flow-step__n">5</span></div><div><h3>ご確認・修正</h3><p>仕上がりを見てから調整します。</p></div></li>
+          <li class="flow-step reveal"><div class="flow-step__lead"><img class="flow-step__icon" src="images/icon-scissors.png" alt="" width="40" height="40"><span class="flow-step__n">6</span></div><div><h3>納品・公開</h3><p>HPは公開まで対応。動画・写真はデータでお渡しします。</p></div></li>
         </ol>
         <p class="flow-note reveal">稼働は平日の夜・土日祝が中心です。</p>
       </div>
@@ -816,6 +819,7 @@
           <h2 class="section__title">お問い合わせ</h2>
         </div>
         <div class="contact-card reveal">
+          <img class="contact-card__icon" src="images/icon-contact.png" alt="" width="160" height="160">
           <h2>まずは無料でご相談ください</h2>
           <p>「うちでもできる？」の段階でOK。初回のご相談・お見積もりは無料です。</p>
           <div class="contact-card__actions">
@@ -823,7 +827,7 @@
             <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
           </div>
           <p class="contact-info">
-            対応エリア：東京23区が中心。ホームページ制作はオンラインで全国対応。<br>
+            <img class="contact-info__icon" src="images/icon-domestic-overseas.png" alt="">対応エリア：東京23区が中心。ホームページ制作はオンラインで全国対応。<br>
             稼働：平日の夜・土日祝が中心です。
           </p>
         </div>
