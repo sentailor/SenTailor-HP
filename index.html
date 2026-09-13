@@ -274,6 +274,8 @@
   /* ---------- Services ---------- */
   .svc-list { display: grid; gap: clamp(28px, 6vw, 52px); }
   .svc { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1.2rem; align-items: start; }
+  .svc__lead { display: flex; flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .svc__icon { width: 60px; height: 60px; object-fit: contain; }
   .svc__num {
     font-weight: 700; font-size: 0.95rem; color: var(--navy);
     background: var(--yellow); border-radius: 8px; padding: 0.35rem 0.6rem; line-height: 1;
@@ -385,11 +387,9 @@
     padding: clamp(22px, 3.4vw, 30px); box-shadow: var(--shadow);
   }
   .why-card__n {
-    width: 2.5rem; height: 2.5rem; display: grid; place-content: center;
-    background: var(--yellow); color: var(--navy); border: 1px solid var(--brass);
-    border-radius: 8px; margin-bottom: 0.9rem;
+    width: 3.6rem; height: 3.6rem; margin-bottom: 0.9rem;
   }
-  .why-card__n svg { width: 22px; height: 22px; }
+  .why-card__n img { width: 100%; height: 100%; object-fit: contain; }
   .why-card h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
   .why-card p { font-size: 0.9rem; color: var(--navy-soft); line-height: 1.8; }
   .why-bio {
@@ -449,7 +449,13 @@
   .section--pin {
     background-image: repeating-linear-gradient(90deg, transparent 0 7px, var(--pin) 7px 8px);
   }
-  .concept .wrap { max-width: 46em; }
+  .concept .wrap { max-width: 50em; }
+  .concept__body { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); }
+  .concept__art { width: clamp(96px, 16vw, 148px); height: auto; flex: none; }
+  @media (max-width: 640px) {
+    .concept__body { flex-direction: column; }
+    .concept__art { width: 108px; }
+  }
   .concept__lead {
     font-size: clamp(1.02rem, 2.4vw, 1.14rem); line-height: 2.1; color: var(--navy);
   }
@@ -482,7 +488,7 @@
   @media (max-width: 460px) {
     .menu-grid { grid-template-columns: 1fr; }
     .svc { grid-template-columns: 1fr; }
-    .svc__num { justify-self: start; }
+    .svc__lead { align-items: flex-start; }
     .svc__desc, .svc__tags { grid-column: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -544,7 +550,10 @@
           <span class="eyebrow">Concept</span>
           <h2 class="section__title">仕立てるように、つくる。</h2>
         </div>
-        <p class="concept__lead reveal">サヴィルロウの仕立て屋が、顧客一人ひとりの体型に合わせて時間をかけてスーツを仕立てるように。テレビ番組制作で培った企画力・構成力・編集力、法人営業で培った提案力を、依頼主それぞれの魅力に合わせてひとつひとつ組み立てます。AIを活用したスピード感と、人の手による<span class="q">&ldquo;仕立て&rdquo;</span>の丁寧さを両立させることが、私たちの軸です。</p>
+        <div class="concept__body">
+          <img class="concept__art reveal" src="images/icon-tape-measure.png" alt="" width="320" height="320">
+          <p class="concept__lead reveal">サヴィルロウの仕立て屋が、顧客一人ひとりの体型に合わせて時間をかけてスーツを仕立てるように。テレビ番組制作で培った企画力・構成力・編集力、法人営業で培った提案力を、依頼主それぞれの魅力に合わせてひとつひとつ組み立てます。AIを活用したスピード感と、人の手による<span class="q">&ldquo;仕立て&rdquo;</span>の丁寧さを両立させることが、私たちの軸です。</p>
+        </div>
       </div>
     </section>
 
@@ -610,13 +619,19 @@
         </div>
         <div class="svc-list">
           <article class="svc reveal">
-            <span class="svc__num">01</span>
+            <div class="svc__lead">
+              <img class="svc__icon" src="images/icon-web-dev.png" alt="" width="60" height="60">
+              <span class="svc__num">01</span>
+            </div>
             <h3 class="svc__title">ホームページ制作</h3>
             <p class="svc__desc">小さなお店向けの、スマホで見やすいサイト。AIを使ってスピーディーに。</p>
             <div class="svc__tags"><span class="svc__tag">1ページ〜</span><span class="svc__tag">スマホ対応</span><span class="svc__tag">特別価格</span></div>
           </article>
           <article class="svc reveal">
-            <span class="svc__num">02</span>
+            <div class="svc__lead">
+              <img class="svc__icon" src="images/icon-video-prod.png" alt="" width="60" height="60">
+              <span class="svc__num">02</span>
+            </div>
             <h3 class="svc__title">映像・写真の撮影／編集</h3>
             <p class="svc__desc">店舗紹介・PR・SNSショート動画、写真の撮影と編集。撮影はスマホ、構成は番組づくりの視点で。まずはいちばん低い価格から。</p>
             <div class="svc__tags"><span class="svc__tag">スマホ撮影</span><span class="svc__tag">撮影＋編集</span><span class="svc__tag">編集だけもOK</span><span class="svc__tag">縦型ショート</span></div>
@@ -764,22 +779,22 @@
         </div>
         <div class="why-grid">
           <div class="why-card reveal">
-            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6.5" r="2.3"/><circle cx="6" cy="17.5" r="2.3"/><path d="M8.2 7.6 19 17.5M8.2 16.4 19 6.5"/></svg></div>
+            <div class="why-card__n"><img src="images/icon-planning.png" alt="" width="160" height="160"></div>
             <h3>テレビ仕込みの企画・構成力</h3>
             <p>順番・テンポ・言葉選びで、「最後まで見たくなる・読みたくなる」形に設計します。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 6H7a4 4 0 0 0 0 8h10a4 4 0 0 1 0 8H6"/><path d="M9.5 6v2M12.5 6v2M15 10v2M12 18v-2"/></svg></div>
+            <div class="why-card__n"><img src="images/icon-idea-proposal.png" alt="" width="160" height="160"></div>
             <h3>法人営業で鍛えた提案力</h3>
             <p>「言われた通り」ではなく、「このお店ならこう見せる」というご提案から一緒に考えます。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20 17 7"/><path d="m15.4 5.4 3.2 3.2"/><path d="M4 20c0-2.4 2-2.4 2-4.8s-2-2.4-2-4.8"/></svg></div>
+            <div class="why-card__n"><img src="images/icon-system-dev.png" alt="" width="160" height="160"></div>
             <h3>AI活用でスピード＆低コスト</h3>
             <p>調査も下書きもAIを活用。浮いた時間とコストは、価格としてお返しします。</p>
           </div>
           <div class="why-card reveal">
-            <div class="why-card__n"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8M8 20h8"/><path d="M9 4v16M15 4v16"/><path d="M9 8h6M9 12h6M9 16h6"/><path d="M15 12c2.3 0 3.6 1.6 3.6 3.6"/></svg></div>
+            <div class="why-card__n"><img src="images/icon-trust-partnership.png" alt="" width="160" height="160"></div>
             <h3>企画から納品までひとりで一気通貫</h3>
             <p>窓口がひとつなので意図がぶれず、やり取りもシンプルです。</p>
           </div>
