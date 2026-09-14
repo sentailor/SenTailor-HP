@@ -316,7 +316,9 @@
     background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--yellow);
     border-radius: var(--radius); padding: clamp(22px, 3.6vw, 32px); max-width: 44em;
   }
-  .video-credit h3 { font-size: 1.15rem; margin: 0.2rem 0 0.7rem; }
+  .video-credit__head { display: flex; align-items: center; gap: 0.7rem; margin: 0.2rem 0 0.7rem; }
+  .video-credit__icon { width: 40px; height: 40px; object-fit: contain; flex: none; }
+  .video-credit h3 { font-size: 1.15rem; margin: 0; }
   .video-credit p { color: var(--navy-soft); line-height: 1.9; font-size: 0.95rem; }
   .video-credit p b { color: var(--navy); font-weight: 700; }
   .video-credit p + p { margin-top: 0.8rem; }
@@ -571,7 +573,7 @@
             <p>ホームページが古い、そもそも無い</p>
           </div>
           <div class="worry-card reveal">
-            <div class="worry-card__icon"><img src="images/icon-sns-content.png" alt="" width="160" height="160"></div>
+            <div class="worry-card__icon"><img src="images/icon-sns-multi.png" alt="" width="160" height="160"></div>
             <p>魅力が伝わる写真・動画がなく、SNS発信が弱い</p>
           </div>
           <div class="worry-card reveal">
@@ -719,10 +721,13 @@
 
         <div class="video-credit reveal">
           <span class="eyebrow">Video</span>
-          <h3>映像編集の実績</h3>
+          <div class="video-credit__head">
+            <img class="video-credit__icon" src="images/icon-video-edit.png" alt="" width="160" height="160">
+            <h3>映像編集の実績</h3>
+          </div>
           <p>これまで、<b>バラエティ番組</b>や<b>芸能人YouTubeチャンネル</b>の制作に、AD・ディレクターとして携わってきました。企画・構成から撮影・編集まで、テレビの現場で培ったテンポとまとめ方を、お店の紹介動画にも活かします。</p>
           <p>個人でも<b>旅行動画</b>の撮影・編集を続けており、<b>インサートカット</b>や<b>紹介VTR</b>の構成づくりが得意です。</p>
-          <p class="video-credit__note">※ 守秘義務のある案件が多いため、個別のタイトルは掲載していません。</p>
+          <p class="video-credit__note">※ 各案件の事情により、個別の番組名・チャンネル名は伏せております。</p>
         </div>
       </div>
     </section>
@@ -741,10 +746,10 @@
           <div class="price-card price-card--main reveal">
             <h3>ホームページ制作</h3>
             <p class="price-card__sub">スマホ対応・シンプルなお店のサイト</p>
-            <p class="price-big"><span class="num">3,000</span><span class="unit">円（税込）</span></p>
+            <p class="price-big"><span class="num">5,000</span><span class="unit">円（税込）</span></p>
             <span class="price-badge">期間限定の特別価格</span>
             <ul class="price-list">
-              <li>制作費は 3,000円（税込）ぽっきり。追加料金はありません。</li>
+              <li>制作費は 5,000円（税込）ぽっきり。追加料金はありません。</li>
               <li>ドメイン代はお客様ご負担（実費）。取得のお手伝いはします。</li>
             </ul>
             <p class="price-note">
