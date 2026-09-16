@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<title>Yamato Tailor（ヤマトテーラー）｜ひとつひとつ、仕立てるように。</title>
-<meta name="description" content="Yamato Tailor（ヤマトテーラー）｜ひとつひとつ、仕立てるように。元テレビ番組スタッフ・現法人営業による、小規模店舗向けのホームページ制作と映像・写真の撮影／編集。企画力・構成力・編集力・提案力とAI活用を、依頼主ごとにひとつひとつ組み立てます。">
+<title>Sen Tailor（センテーラー）｜ひとつひとつ、仕立てるように。</title>
+<meta name="description" content="Sen Tailor（センテーラー）｜ひとつひとつ、仕立てるように。元テレビ番組スタッフ・現法人営業による、小規模店舗向けのホームページ制作と映像・写真の撮影／編集。企画力・構成力・編集力・提案力とAI活用を、依頼主ごとにひとつひとつ組み立てます。">
 <meta name="google-site-verification" content="SnLUh9x4phcTbFVtAunFk5u0RUKOWXAC6b_fdHvTcX8" />
 <link rel="icon" type="image/png" sizes="64x64" href="images/favicon-64.png">
 <link rel="apple-touch-icon" href="images/favicon-180.png">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
 <style>
   /* ===================================================================
-     Yamato Tailor ブランド
+     Sen Tailor ブランド
      - 白 #FFFFFF（ベース） / ゴールドイエロー #F5C518（面・金糸/真鍮アクセント）
      - 濃紺 #1B1F3B（文字専用） / 深みのある金 #B8901F（細い線・小さなアクセント）
      - 見出し・ロゴ＝上品なセリフ体 / 本文＝読みやすいゴシック体
@@ -465,6 +465,7 @@
     font-size: clamp(1.02rem, 2.4vw, 1.14rem); line-height: 2.1; color: var(--navy);
   }
   .concept__lead .q { color: var(--brass); font-style: normal; }
+  .concept__text { display: flex; flex-direction: column; gap: 1rem; }
 
   /* ---------- Reveal ---------- */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -509,8 +510,7 @@
 <header class="site-header" id="site-header">
   <div class="header-in">
     <a class="brand" href="#/">
-      <img class="brand__mark" src="images/logo-mark.png" alt="" width="120" height="120">
-      <span class="brand__type"><span class="brand__main">YAMATO TAILOR</span><span class="brand__sub">ヤマトテーラー</span></span>
+      <span class="brand__type"><span class="brand__main">SEN TAILOR</span><span class="brand__sub">センテーラー</span></span>
     </a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">メニュー</button>
     <nav class="nav" id="nav" aria-label="サイトナビゲーション">
@@ -557,7 +557,13 @@
         </div>
         <div class="concept__body">
           <img class="concept__art reveal" src="images/icon-tape-measure.png" alt="" width="320" height="320">
-          <p class="concept__lead reveal">サヴィルロウの仕立て屋が、顧客一人ひとりの体型に合わせて時間をかけてスーツを仕立てるように。テレビ番組制作で培った企画力・構成力・編集力、法人営業で培った提案力を、依頼主それぞれの魅力に合わせてひとつひとつ組み立てます。AIを活用したスピード感と、人の手による<span class="q">&ldquo;仕立て&rdquo;</span>の丁寧さを両立させることが、私たちの軸です。</p>
+          <div class="concept__text">
+            <p class="concept__lead reveal">Sen Tailor（センテーラー）という名前には、ふたつの意味を込めています。</p>
+            <p class="concept__lead reveal">ひとつは<span class="q">「線」</span>。仕立て屋が一本の糸で生地を繋ぎ合わせるように、ひとつひとつの出会いを&ldquo;一本の線&rdquo;で結び、形にしていきます。</p>
+            <p class="concept__lead reveal">もうひとつは<span class="q">「縁」</span>。ご縁があって出会った方々と、丁寧に、長く続く関係を築いていきたいという思いを込めています。</p>
+            <p class="concept__lead reveal">サヴィルロウの仕立て屋が、顧客ひとりひとりの体型に合わせて時間をかけてスーツを仕立てるように。既製品やテンプレートではなく、ひとつひとつ相手に合わせて&ldquo;仕立てる&rdquo;ことを大切にしています。</p>
+            <p class="concept__lead reveal">テレビ番組制作で培った企画力・構成力・編集力、法人営業で培った提案力を活かしながら、HP制作・映像／写真撮影編集を中心に承っております。AIを活用したスピード感と、人の手による<span class="q">&ldquo;仕立て&rdquo;</span>の丁寧さを両立させ、それぞれの魅力に合わせて仕立てていきます。</p>
+          </div>
         </div>
       </div>
     </section>
@@ -843,7 +849,7 @@
 <footer class="site-footer">
   <div class="footer-in">
     <a class="brand footer-brand" href="#/">
-      <img class="footer-brand__logo" src="images/logo-full.png" alt="Yamato Tailor（ヤマトテーラー）" width="400" height="307">
+      <span class="brand__type"><span class="brand__main">SEN TAILOR</span><span class="brand__sub">センテーラー</span></span>
     </a>
     <a class="ig-btn" data-ig href="https://www.instagram.com/[Instagramユーザーネーム]" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
     <nav class="footer-nav" aria-label="フッターナビゲーション">
@@ -856,7 +862,7 @@
     </nav>
     <p class="footer-fine">
       掲載している制作例は、制作の雰囲気をお伝えするために用意した架空のサンプルです（実在の店舗ではありません）。<br>
-      &copy; 2026 Yamato Tailor
+      &copy; 2026 Sen Tailor
     </p>
   </div>
 </footer>
@@ -865,7 +871,7 @@
   (function () {
     'use strict';
 
-    var BRAND = 'Yamato Tailor';
+    var BRAND = 'Sen Tailor';
     /* お問い合わせ：Googleフォームの回答URL */
     var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdYIskEfObyCKoRb7oAOp9SZtcJoFzgi5C20hyMu8E7h2deIQ/viewform';
     /* Instagram：プロフィール開設後にURLを入れると全ボタンに反映（空ならプレースホルダーのまま） */
