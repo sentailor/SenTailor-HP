@@ -455,6 +455,14 @@
     background-image: repeating-linear-gradient(90deg, transparent 0 7px, var(--pin) 7px 8px);
   }
   .concept .wrap { max-width: 50em; }
+  .concept--photo {
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,.93) 0%, rgba(255,255,255,.97) 45%, rgba(255,255,255,.99) 100%),
+      url("images/concept-bg.jpg");
+    background-size: cover;
+    background-position: center 32%;
+    background-repeat: no-repeat;
+  }
   .concept__body { display: flex; align-items: center; gap: clamp(20px, 4vw, 40px); }
   .concept__art { width: clamp(96px, 16vw, 148px); height: auto; flex: none; }
   @media (max-width: 640px) {
@@ -550,7 +558,7 @@
 
     <div class="rule-pin" aria-hidden="true"></div>
 
-    <section class="section section--pin" id="concept">
+    <section class="section concept--photo" id="concept">
       <div class="wrap">
         <div class="section__head reveal">
           <span class="eyebrow">Concept</span>
