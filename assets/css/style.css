@@ -156,6 +156,15 @@ a { color: inherit; }
 .nav li:last-child { padding-top: 18px; }
 .nav .btn { width: 100%; }
 
+/* 幅の狭いスマホでも、ロゴとメニューが1行に収まるようにする */
+@media (max-width: 359px) {
+  .site-header__in { gap: 0 8px; }
+  .brand { gap: 8px; }
+  .brand img { width: 32px; height: 32px; }
+  .brand__name { font-size: 1.0625rem; letter-spacing: .05em; }
+  .menu-btn { gap: 8px; padding-left: 4px; font-size: .8125rem; letter-spacing: .06em; }
+}
+
 /* JSが動くときだけ、スマホではメニューをたたむ */
 .js .menu-btn { display: inline-flex; }
 .js .nav { display: none; }
@@ -177,13 +186,18 @@ a { color: inherit; }
 .hero { position: relative; isolation: isolate; overflow: hidden; padding-top: clamp(44px, 9vw, 104px); }
 .hero__in { display: grid; gap: 0; }
 .hero__in > * { min-width: 0; }
-/* 白い台の上の道具の写真。フッターと同じくらい薄く敷き、端はぼかして地に溶け込ませる */
+/* 裁ちバサミ・巻尺・糸の写真。フッターと同じくらい薄く敷き、端はぼかして地に溶け込ませる。
+   スマホでは、ハサミと巻尺が値札の上に見える位置に置く（寸法は画面幅に比例させる） */
 .hero__visual {
-  position: absolute; z-index: -1; left: 0; right: 0; bottom: 0; height: 420px;
-  background: url("../../images/hero-flatlay.jpg") 82% 100% / auto 118% no-repeat;
-  opacity: .42;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0, #000 110px, #000 calc(100% - 110px), transparent 100%);
+  --w: min(100vw, 560px);
+  position: absolute; z-index: -1; bottom: 0; left: 50%; width: var(--w); height: calc(var(--w) * 1.33);
+  transform: translateX(-50%);
+  background: url("../../images/hero-tailor.jpg") center bottom calc(var(--w) * .51) / 100% auto no-repeat;
+  opacity: .36;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 46%, transparent 62%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 46%, transparent 62%), linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-composite: intersect;
 }
 .hero__kicker { font-size: .875rem; font-weight: 500; letter-spacing: .14em; line-height: 1.7; }
 .hero__title {
@@ -197,7 +211,7 @@ a { color: inherit; }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 30px; margin-top: 34px; }
 
 /* 値札：ヒーローの主役。料金の事実だけを載せる */
-.tagwrap { position: relative; width: min(calc(100% - 40px), 340px); margin: 150px 0 44px 40px; padding-top: 10px; filter: drop-shadow(0 18px 22px rgba(27, 31, 59, .22)); }
+.tagwrap { position: relative; width: min(calc(100% - 40px), 340px); margin: calc(min(100vw, 560px) * .56) 0 44px 40px; padding-top: 10px; filter: drop-shadow(0 18px 22px rgba(27, 31, 59, .22)); }
 .tag {
   position: relative;
   padding: 1.5px;
@@ -252,8 +266,8 @@ a { color: inherit; }
   .hero { padding-bottom: clamp(88px, 9vw, 128px); }
   .hero__in { grid-template-columns: minmax(0, 1fr) 380px; align-items: end; gap: 40px 64px; }
   .hero__visual {
-    left: auto; top: 0; height: auto; width: min(57vw, 900px);
-    background-position: 100% 60%; background-size: cover;
+    left: auto; right: 0; top: 0; height: auto; width: min(57vw, 900px); transform: none;
+    background-position: 50% 66%; background-size: cover;
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 200px), linear-gradient(to bottom, #000 0, #000 calc(100% - 140px), transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image: linear-gradient(to right, transparent 0, #000 200px), linear-gradient(to bottom, #000 0, #000 calc(100% - 140px), transparent 100%);
@@ -465,11 +479,11 @@ main::before {
 .page-head { position: relative; isolation: isolate; overflow: hidden; padding-block: clamp(56px, 10vw, 112px) clamp(8px, 2vw, 24px); }
 .page-head__visual {
   position: absolute; z-index: -1; top: 0; right: 0; width: min(100%, 760px); height: 100%; min-height: 300px;
-  background: url("../../images/hero-flatlay.jpg") 100% 35% / cover no-repeat;
-  opacity: .34;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 70%), linear-gradient(to bottom, #000 0, #000 45%, transparent 100%);
+  background: url("../../images/tape-measure.jpg") 100% 60% / cover no-repeat;
+  opacity: .27;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 70%), linear-gradient(to bottom, #000 0, #000 62%, transparent 100%);
   -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent 0, #000 70%), linear-gradient(to bottom, #000 0, #000 45%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 70%), linear-gradient(to bottom, #000 0, #000 62%, transparent 100%);
   mask-composite: intersect;
 }
 .page-head__title::after { content: ""; display: block; width: 56px; height: 4px; margin-top: 22px; background: var(--gold); }
@@ -499,15 +513,14 @@ main::before {
 
 /* ---------- フッター ---------- */
 
-.site-footer { position: relative; isolation: isolate; padding-block: 72px 40px; }
+.site-footer { position: relative; isolation: isolate; padding-block: clamp(88px, 12vw, 150px) 40px; }
 /* ロンドンの写真を薄く敷く。上端はぼかして、手前の区切りとつなげる */
 .site-footer::before {
-  content: ""; position: absolute; z-index: -1; inset: 0; opacity: .3;
-  background: url("../../images/london-regent-street.jpg") center 72% / cover no-repeat;
+  content: ""; position: absolute; z-index: -1; inset: 0; opacity: .25;
+  background: url("../../images/london-regent-street.jpg") center 86% / cover no-repeat;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 150px);
   mask-image: linear-gradient(to bottom, transparent 0, #000 150px);
 }
-.site-footer__small { color: var(--navy); }
 .site-footer__in { display: grid; gap: 30px; }
 .site-footer .brand img { width: 44px; height: 44px; }
 .footnav ul { display: flex; flex-wrap: wrap; gap: 6px 26px; }
@@ -515,7 +528,7 @@ main::before {
 .footnav a:hover { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 3px; text-underline-offset: 6px; }
 .ig { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: .9375rem; padding: 6px 0; justify-self: start; }
 .ig svg { width: 22px; height: 22px; }
-.site-footer__small { display: grid; gap: 6px; padding-top: 24px; border-top: 1px solid var(--line); font-size: .8125rem; color: var(--navy-soft); line-height: 1.8; }
+.site-footer__small { display: grid; gap: 6px; padding-top: 24px; border-top: 1px solid var(--line-strong); font-size: .8125rem; color: var(--navy); line-height: 1.8; }
 @media (min-width: 900px) {
   .site-footer__in { grid-template-columns: auto 1fr auto; align-items: center; gap: 30px 56px; }
   .site-footer__small { grid-column: 1 / -1; grid-template-columns: 1fr auto; }
