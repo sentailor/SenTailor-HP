@@ -517,7 +517,7 @@ main::before {
 /* ロンドンの写真を薄く敷く。上端はぼかして、手前の区切りとつなげる */
 .site-footer::before {
   content: ""; position: absolute; z-index: -1; inset: 0; opacity: .25;
-  background: url("../../images/london-regent-street.jpg") center 86% / cover no-repeat;
+  background: url("../../images/london-regent-street.jpg") center 100% / cover no-repeat;
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 150px);
   mask-image: linear-gradient(to bottom, transparent 0, #000 150px);
 }
