@@ -283,7 +283,7 @@ a { color: inherit; }
 .section { position: relative; padding-block: var(--section); }
 
 /* 薄く敷く写真。上下をぼかして、前後の区切りとつなげる */
-.has-deco { isolation: isolate; }
+.has-deco { isolation: isolate; overflow-x: clip; }
 .deco {
   position: absolute; z-index: -1; inset: 0; opacity: .17;
   background-position: center; background-size: cover; background-repeat: no-repeat;
@@ -360,6 +360,19 @@ main::before {
 
 .maker__text { display: grid; gap: .9em; max-width: 36em; }
 .maker__sub { margin-top: 1.4em; }
+
+/* 「法人営業として」の後ろに敷く街並み。
+   スマホでは、この段落の後ろに画面幅いっぱいの帯として置く（縦長の欄全体に敷くと、空しか見えなくなるため）。
+   900px以上では、これまでどおり欄全体に敷く。 */
+.maker__block { position: relative; display: grid; gap: .9em; }
+.maker__block > .deco {
+  inset: -104px auto -104px calc(var(--gutter) * -1); width: 100vw;
+  background-position: 40% 50%;
+}
+@media (min-width: 900px) {
+  .maker__block { position: static; }
+  .maker__block > .deco { inset: 0; width: auto; background-position: center; }
+}
 
 .name__intro { margin-top: 18px; max-width: 36em; }
 .meanings { margin-top: 34px; display: grid; gap: 0; border-top: 1px solid var(--line-strong); }
